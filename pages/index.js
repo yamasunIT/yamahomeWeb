@@ -7,7 +7,7 @@ export default function Home() {
   const Button = () => {
 
     const handleClick = () => {
-      fetch('http://192.168.1.126:8000/test')
+      fetch('http://localhost:8000/test')
         .then(response => response.json())
         .then(data => {
           // Process the received data here
