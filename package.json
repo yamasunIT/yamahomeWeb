@@ -6,6 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "bootstrap": "^5.3.1",
+    "formik": "^2.4.3",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0"

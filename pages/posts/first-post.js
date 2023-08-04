@@ -4,15 +4,13 @@ import Layout from '../../components/layout';
 
 export default function FirstPost() {
   return (
-    <Layout>
+    <Layout home>
       <Head>
         <title>First Post</title>
       </Head>
       <h1>First Post</h1>
       <h2>
-        <Link href="/">
-          Back to home
-        </Link>
+        <Link href="/">Back to home</Link>
       </h2>
     </Layout>
   );
