@@ -11,3 +11,6 @@ npm run dev
 ```
 ##### 官方教程
 [Next.js](https://nextjs.tw/)
+
+##### 登入使用的solution
+[formik](https://formik.org/)

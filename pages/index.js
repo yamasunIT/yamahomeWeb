@@ -20,6 +20,7 @@ export default function Home() {
   );*/
   return (
     <div>
+      <Layout home>
       <Head>
         <title>Login Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,6 +29,7 @@ export default function Home() {
       <main className="vh-100 d-flex justify-content-center align-items-center">
         <LoginForm/>
       </main>
+      </Layout>
     </div>
   );
 }
