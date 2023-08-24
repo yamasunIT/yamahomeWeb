@@ -31,7 +31,7 @@ return (
     <Head>
       <title>日山智慧家電</title>
     </Head>
-    <div className={'app-container bg-light'}>
+    <div>
       <Nav />
       <Alert />
       <Component {...pageProps} />

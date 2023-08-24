@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import * as Yup from 'yup';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { Layout } from '../../components/account';
+import { Layout } from '../../components/account/Layout';
 
 export default function Register() {
     const router = useRouter();

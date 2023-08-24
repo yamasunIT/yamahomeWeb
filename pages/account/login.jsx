@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import * as Yup from 'yup';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { Layout } from '../../components/account';
+import { Layout } from '../../components/account/Layout';
 
 export default function Login() {
     const router = useRouter();
