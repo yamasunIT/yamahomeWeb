@@ -5,12 +5,12 @@ import { useRouter } from 'next/router';
 import { Alert } from '../components/Alert';
 import { Nav } from '../components/Nav';
 import Head from 'next/head';
+import { Footer } from '../components/Footer';
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps}) {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [authorized, setAuthorized] = useState(true);
-  
   useEffect(()=>{
     import("bootstrap/dist/js/bootstrap");
     authCheck();
@@ -35,6 +35,7 @@ return (
       <Nav />
       <Alert />
       <Component {...pageProps} />
+      <Footer />
     </div>
   </>
 );
