@@ -7,6 +7,7 @@ import { NavLink } from './NavLink';
 function Nav() {
     const [show, setShow] = useState(false);
     const router = useRouter();
+
     useEffect(() => {
       showCheck(router.asPath);
     }, [router]);
@@ -24,8 +25,8 @@ function Nav() {
       return (
         <nav className="navbar navbar-expand navbar-dark px-3 justify-content-end" style={{backgroundColor: '#ffcc33'}}>
           <div className="navbar-nav">
-            <NavLink href="/dashboard/home" exact className="nav-item nav-link">首頁</NavLink>
-            {/*<NavLink href="/users" className="nav-item nav-link">使用者</NavLink>*/}
+            <NavLink href="/dashboard/home" exact className="nav-item nav-link">家庭</NavLink>
+            <NavLink href="/dashboard/editHome" className="nav-item nav-link">編輯</NavLink>
             <button onClick={userService.logout} className="btn btn-link nav-item nav-link">登出</button>
           </div>
         </nav>

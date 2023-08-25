@@ -1,93 +1,81 @@
-import Styles from '../../components/Footer.module.css';
+import Styles from '../../styles/home.module.css';
+import React, { useState, useEffect } from "react";
+import Modal from '../../components/Modal';
+import { useRouter } from 'next/router';
 
+const buttonView = {
+  height: '100px'
+};
+
+const homeData = [
+  {
+    name: "客廳",
+    devices: [
+      {
+        name: '左燈',
+        serailNo: '12345678',
+        deviceType: 'smartPlug'
+      },
+      {
+        name: '右燈',
+        serailNo: '543',
+        deviceType: 'smartPlug'
+      },
+      {
+        name: '中燈',
+        serailNo: '8765',
+        deviceType: 'smartPlug'
+      }
+    ]
+  },
+  {
+    name: "廚房",
+    devices: [
+      {
+        name: '前燈',
+        serailNo: '12345678',
+        deviceType: 'smartPlug'
+      },
+      {
+        name: '後燈',
+        serailNo: '2345',
+        deviceType: 'smartPlug'
+      }
+    ]
+  }
+];
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [actionButton, setActionButton] = useState(false);
+  const [data, setData] = useState([]);
+  const [modalData, setModalData] = useState(null);
+  const router = useRouter();
 
-  const HomeButton = () => {
-      return(
-        <div className={Styles.homeText}>
-        <div className={Styles.homeBody}>
-        <div className="container text-center">
-        <div className="row mb-1">
-          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div className="row">
-              <div className="col-12">
-                <div className="col-10"><p className="fs-1 fw-bold text-end">電燈</p></div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div className="row">
-                <div className="col-12">
-                  <div className="col-10"><p className="fs-1 fw-bold text-end">冷氣</p></div>
-                </div>
-            </div>
-          </div>
-          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div className="row">
-              <div className="col-12">
-                <div className="col-10"><p className="fs-1 fw-bold text-end">窗簾</p></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row mb-1">
-          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div className="row">
-              <div className="col-12">
-                <div className="col-12"><p className="fs-1 fw-bold text-end">掃地機器人</p></div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div className="row">
-                <div className="col-12">
-                  <div className="col-11"><p className="fs-1 fw-bold text-end">除濕機</p></div>
-                </div>
-            </div>
-          </div>
-          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div className="row">
-                <div className="col-12">
-                  <div className="col-10"><p className="fs-1 fw-bold text-end">電視</p></div>
-                </div>
-            </div>
-          </div>
-        </div>
-        <div className="row mb-1">
-          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div className="row">
-                <div className="col-12">
-                  <div className="col-10"><p className="fs-1 fw-bold text-end">風扇</p></div>
-                </div>
-            </div>
-          </div>
-          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div className="row">
-                <div className="col-12">
-                  <div className="col-11"><p className="fs-1 fw-bold text-end">情境設定</p></div>
-                </div>
-            </div>
-          </div>
-          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div className="row">
-                  <div className="col-12">
-                    <div className="col-10"><p className="fs-1 fw-bold text-end">link</p></div>
-                  </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-      </div>
-      );
+  useEffect(() => {
+    setData(homeData);
+  }, [router]);
+
+
+  const onPress = (data) => {
+    setIsOpen(true);
+    setActionButton(false);
+    setModalData(data);
   }
 
+  const HomeButton = ({data}) => {
+    return (
+      <div className='col-12 col-sm-6 col-md-4 text-center' style={buttonView}>
+        <button className={Styles.primaryBtn} onClick={() => onPress(data)}>
+          {data.name}
+        </button>
+      </div>
+    );
+  }
   return (
     <>
-      <div className={Styles.homeHead}>
-        <HomeButton/>
-      </div>
+      {data.map((item, index)=> <HomeButton data={item} key={index}/>)}
+      {isOpen && <Modal setIsOpen={setIsOpen} actionButton={actionButton} modalData={modalData}/>}
     </>
   );
 }
