@@ -1,18 +1,6 @@
 .homeFooter{
-    height: 100px;
-    background-color: rgb(44, 81, 155);
-    width: 100%;
+    background-color: #ffcc33;
     font-size: 0.5em;
-    color:#1b1c1b;
-}
-.footerBody{
-    background-color:#93938f;  
-}
-.homeBody{
-    background-color:#FFFFFF;
-     color:#93938f;
-     font-size :1em;;
-}
-.homeHead{
-    color: #1b1c1b;
+    color: grey;
+    text-align: center;
 }

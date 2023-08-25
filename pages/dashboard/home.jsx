@@ -5,74 +5,74 @@ export default function Home() {
 
   const HomeButton = () => {
       return(
-        <div class={Styles.homeText}>
-        <div class={Styles.homeBody}>
-        <div class="container text-center">
-        <div class="row mb-1">
-          <div class="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div class="row">
-              <div class="col-12">
-                <div class="col-10"><p class="fs-1 fw-bold text-end">電燈</p></div>
+        <div className={Styles.homeText}>
+        <div className={Styles.homeBody}>
+        <div className="container text-center">
+        <div className="row mb-1">
+          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
+            <div className="row">
+              <div className="col-12">
+                <div className="col-10"><p className="fs-1 fw-bold text-end">電燈</p></div>
               </div>
             </div>
           </div>
-          <div class="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div class="row">
-                <div class="col-12">
-                  <div class="col-10"><p class="fs-1 fw-bold text-end">冷氣</p></div>
+          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
+            <div className="row">
+                <div className="col-12">
+                  <div className="col-10"><p className="fs-1 fw-bold text-end">冷氣</p></div>
                 </div>
             </div>
           </div>
-          <div class="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div class="row">
-              <div class="col-12">
-                <div class="col-10"><p class="fs-1 fw-bold text-end">窗簾</p></div>
+          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
+            <div className="row">
+              <div className="col-12">
+                <div className="col-10"><p className="fs-1 fw-bold text-end">窗簾</p></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row mb-1">
-          <div class="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div class="row">
-              <div class="col-12">
-                <div class="col-12"><p class="fs-1 fw-bold text-end">掃地機器人</p></div>
+        <div className="row mb-1">
+          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
+            <div className="row">
+              <div className="col-12">
+                <div className="col-12"><p className="fs-1 fw-bold text-end">掃地機器人</p></div>
               </div>
             </div>
           </div>
-          <div class="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div class="row">
-                <div class="col-12">
-                  <div class="col-11"><p class="fs-1 fw-bold text-end">除濕機</p></div>
+          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
+            <div className="row">
+                <div className="col-12">
+                  <div className="col-11"><p className="fs-1 fw-bold text-end">除濕機</p></div>
                 </div>
             </div>
           </div>
-          <div class="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div class="row">
-                <div class="col-12">
-                  <div class="col-10"><p class="fs-1 fw-bold text-end">電視</p></div>
+          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
+            <div className="row">
+                <div className="col-12">
+                  <div className="col-10"><p className="fs-1 fw-bold text-end">電視</p></div>
                 </div>
             </div>
           </div>
         </div>
-        <div class="row mb-1">
-          <div class="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div class="row">
-                <div class="col-12">
-                  <div class="col-10"><p class="fs-1 fw-bold text-end">風扇</p></div>
+        <div className="row mb-1">
+          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
+            <div className="row">
+                <div className="col-12">
+                  <div className="col-10"><p className="fs-1 fw-bold text-end">風扇</p></div>
                 </div>
             </div>
           </div>
-          <div class="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div class="row">
-                <div class="col-12">
-                  <div class="col-11"><p class="fs-1 fw-bold text-end">情境設定</p></div>
+          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
+            <div className="row">
+                <div className="col-12">
+                  <div className="col-11"><p className="fs-1 fw-bold text-end">情境設定</p></div>
                 </div>
             </div>
           </div>
-          <div class="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
-            <div class="row">
-                  <div class="col-12">
-                    <div class="col-10"><p class="fs-1 fw-bold text-end">link</p></div>
+          <div className="col-md-4 btn border border-dark border border-5" href="#" role="button" style={{height:110}}>
+            <div className="row">
+                  <div className="col-12">
+                    <div className="col-10"><p className="fs-1 fw-bold text-end">link</p></div>
                   </div>
             </div>
           </div>
@@ -82,13 +82,13 @@ export default function Home() {
       </div>
       );
   }
- 
+
   return (
     <>
       <Head>
         <title>日山智慧家電</title>
       </Head>
-      <div class={Styles.homeHead}>
+      <div className={Styles.homeHead}>
         <h1>您好，日山先生</h1>
         <div><h7>祝您有一個美好的一天。</h7></div>
         <div><h7>室內溫度: 室內溼度:</h7></div>

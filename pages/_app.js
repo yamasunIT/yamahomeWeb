@@ -25,7 +25,6 @@ function authCheck() {
     setUser(items);
   }
 }
-
 return (
   <>
     <Head>
