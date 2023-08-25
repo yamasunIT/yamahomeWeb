@@ -6,6 +6,7 @@ import { Alert } from '../components/Alert';
 import { Nav } from '../components/Nav';
 import Head from 'next/head';
 import { Footer } from '../components/Footer';
+import { HomeHeader } from '../components/HomeHeader';
 
 export default function App({ Component, pageProps}) {
   const router = useRouter();
@@ -32,6 +33,7 @@ return (
     </Head>
     <div>
       <Nav />
+      <HomeHeader/>
       <Alert />
       <Component {...pageProps} />
       <Footer />

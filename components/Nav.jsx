@@ -22,7 +22,7 @@ function Nav() {
 
     if(show) {
       return (
-        <nav className="navbar navbar-expand navbar-dark bg-dark px-3 justify-content-end">
+        <nav className="navbar navbar-expand navbar-dark px-3 justify-content-end" style={{backgroundColor: '#ffcc33'}}>
           <div className="navbar-nav">
             <NavLink href="/dashboard/home" exact className="nav-item nav-link">首頁</NavLink>
             {/*<NavLink href="/users" className="nav-item nav-link">使用者</NavLink>*/}
@@ -31,6 +31,8 @@ function Nav() {
         </nav>
       );
     } else {
-      return null;
+      return (
+        <nav className="navbar navbar-expand navbar-dark px-3 justify-content-end" style={{backgroundColor: '#ffcc33', height: '60px'}}/>
+      );
     }
 }

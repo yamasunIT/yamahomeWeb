@@ -1,0 +1,15 @@
+.homeHeader{
+  background-color: #ffcc33;
+  font-size: 0.5em;
+  color: white;
+  text-align:left;
+  height: auto;
+}
+
+.homeLoginHeader{
+  background-color: #ffcc33;
+  font-size: 0.5em;
+  color: white;
+  text-align:center;
+  height: auto;
+}
