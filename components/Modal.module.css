@@ -109,6 +109,25 @@
   background: #ff3e4e;
 }
 
+.confirmBtn {
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 11px 28px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  border: none;
+  color: #fff;
+  background: #32CD32;
+  transition: all 0.25s ease;
+}
+
+.confirmBtn:hover {
+  box-shadow: 0 10px 20px -10px rgba(50, 205, 50, 0.6);
+  transform: translateY(-5px);
+  background: #32CD32;
+}
+
 .cancelBtn {
   margin-top: 10px;
   cursor: pointer;
@@ -126,4 +145,20 @@
   box-shadow: none;
   transform: none;
   background: whitesmoke;
+}
+
+.deviceView {
+  background: #ffcc33;
+  color: white;
+  margin-bottom: 15px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deviceView:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px -10px #ffcc33;
 }

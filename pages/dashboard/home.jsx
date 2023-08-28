@@ -25,6 +25,21 @@ const homeData = [
         name: '中燈',
         serailNo: '8765',
         deviceType: 'smartPlug'
+      },
+      {
+        name: '左燈',
+        serailNo: '12345678',
+        deviceType: 'smartPlug'
+      },
+      {
+        name: '右燈',
+        serailNo: '543',
+        deviceType: 'smartPlug'
+      },
+      {
+        name: '中燈',
+        serailNo: '8765',
+        deviceType: 'smartPlug'
       }
     ]
   },
