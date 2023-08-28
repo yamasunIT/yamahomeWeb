@@ -15,7 +15,21 @@ const Modal = ({ setIsOpen, actionButton, modalData }) => {
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className={styles.modalContent}>
-            Are you sure you want to delete the item?
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
+            <p>Are you sure you want to delete the item?</p>
           </div>
           {actionButton && <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>

@@ -57,6 +57,36 @@ const homeData = [
         deviceType: 'smartPlug'
       }
     ]
+  },
+  {
+    name: "倉庫",
+    devices: [
+      {
+        name: '前燈',
+        serailNo: '12345678',
+        deviceType: 'smartPlug'
+      },
+      {
+        name: '後燈',
+        serailNo: '2345',
+        deviceType: 'smartPlug'
+      }
+    ]
+  },
+  {
+    name: "廁所",
+    devices: [
+      {
+        name: '前燈',
+        serailNo: '12345678',
+        deviceType: 'smartPlug'
+      },
+      {
+        name: '後燈',
+        serailNo: '2345',
+        deviceType: 'smartPlug'
+      }
+    ]
   }
 ];
 

@@ -1,7 +1,7 @@
 .darkBG {
   background-color: rgba(0, 0, 0, 0.2);
   width: 100vw;
-  height: 100vh;
+  height: 200vh;
   z-index: 0;
   top: 50%;
   left: 50%;
@@ -14,11 +14,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  overflow-y: initial !important;
 }
 
 .modal {
-  width: 250px;
-  height: 170px;
+  width: 300px;
+  height: 50vh;
   background: white;
   color: white;
   z-index: 10;
@@ -48,6 +49,8 @@
   font-size: 14px;
   color: #2c3e50;
   text-align: center;
+  height: 40vh;
+  overflow-y: auto;
 }
 
 .modalActions {
