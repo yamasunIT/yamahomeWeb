@@ -42,6 +42,21 @@ const homeData = [
         deviceType: 'smartPlug'
       }
     ]
+  },
+  {
+    name: "房間",
+    devices: [
+      {
+        name: '前燈',
+        serailNo: '12345678',
+        deviceType: 'smartPlug'
+      },
+      {
+        name: '後燈',
+        serailNo: '2345',
+        deviceType: 'smartPlug'
+      }
+    ]
   }
 ];
 
@@ -72,10 +87,13 @@ export default function Home() {
       </div>
     );
   }
+
   return (
-    <>
-      {data.map((item, index)=> <HomeButton data={item} key={index}/>)}
+    <div className='container'>
+      <div className='row row-cols-auto'>
+        {data.map((item, index)=> <HomeButton data={item} key={index}/>)}
+      </div>
       {isOpen && <Modal setIsOpen={setIsOpen} actionButton={actionButton} modalData={modalData}/>}
-    </>
+    </div>
   );
 }
