@@ -9,97 +9,97 @@ const buttonView = {
 
 const homeData = [
   {
-    name: "客廳",
-    devices: [
+    name:"客廳",
+    devices:[
       {
-        name: '左燈',
-        serailNo: '12345678',
-        deviceType: 'smartPlug'
+        name:'左燈',
+        serailNo:'1',
+        deviceType:'bulb'
       },
       {
-        name: '右燈',
-        serailNo: '543',
-        deviceType: 'smartPlug'
+        name:'右燈',
+        serailNo:'2',
+        deviceType:'smartPlug'
       },
       {
-        name: '中燈',
-        serailNo: '8765',
-        deviceType: 'smartPlug'
+        name:'中燈',
+        serailNo:'3',
+        deviceType:'onoff'
       },
       {
-        name: '左燈',
-        serailNo: '12345678',
-        deviceType: 'smartPlug'
+        name:'左燈',
+        serailNo:'1',
+        deviceType:'smartPlug'
       },
       {
-        name: '右燈',
-        serailNo: '543',
-        deviceType: 'smartPlug'
+        name:'右燈',
+        serailNo:'2',
+        deviceType:'smartPlug'
       },
       {
-        name: '中燈',
-        serailNo: '8765',
-        deviceType: 'smartPlug'
+        name:'中燈',
+        serailNo:'3',
+        deviceType:'11'
       }
     ]
   },
   {
-    name: "廚房",
-    devices: [
+    name:"廚房",
+    devices:[
       {
-        name: '前燈',
-        serailNo: '12345678',
-        deviceType: 'smartPlug'
+        name:'前燈',
+        serailNo:'1',
+        deviceType:'smartPlug'
       },
       {
-        name: '後燈',
-        serailNo: '2345',
-        deviceType: 'smartPlug'
+        name:'後燈',
+        serailNo:'4',
+        deviceType:'smartPlug'
       }
     ]
   },
   {
-    name: "房間",
-    devices: [
+    name:"房間",
+    devices:[
       {
-        name: '前燈',
-        serailNo: '12345678',
-        deviceType: 'smartPlug'
+        name:'前燈',
+        serailNo:'1',
+        deviceType:'smartPlug'
       },
       {
-        name: '後燈',
-        serailNo: '2345',
-        deviceType: 'smartPlug'
+        name:'後燈',
+        serailNo:'4',
+        deviceType:'smartPlug'
       }
     ]
   },
   {
-    name: "倉庫",
-    devices: [
+    name:"倉庫",
+    devices:[
       {
-        name: '前燈',
-        serailNo: '12345678',
-        deviceType: 'smartPlug'
+        name:'前燈',
+        serailNo:'1',
+        deviceType:'smartPlug'
       },
       {
-        name: '後燈',
-        serailNo: '2345',
-        deviceType: 'smartPlug'
+        name:'後燈',
+        serailNo:'4',
+        deviceType:'smartPlug'
       }
     ]
   },
   {
-    name: "廁所",
-    devices: [
+    name:"廁所",
+    devices:[
       {
-        name: '前燈',
-        serailNo: '12345678',
-        deviceType: 'smartPlug'
+        name:'前燈',
+        serailNo:'1',
+        deviceType:'smartPlug'
       },
       {
-        name: '後燈',
-        serailNo: '2345',
-        deviceType: 'smartPlug'
+        name:'後燈',
+        serailNo:'4',
+        deviceType:'smartPlug'
       }
     ]
   }

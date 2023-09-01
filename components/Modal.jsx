@@ -1,6 +1,17 @@
 import React from "react";
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
+import { IoBulbOutline } from "react-icons/io5";
+import { BsPlug } from "react-icons/bs";
+import { RxButton } from "react-icons/rx";
+
+const iconView = {
+  fontSize: 30
+}
+
+const deviceNameView = {
+  fontSize: 16
+}
 
 const Modal = ({ setIsOpen, actionButton, modalData }) => {
   const ConfirmBtn = () => {
@@ -36,16 +47,32 @@ const Modal = ({ setIsOpen, actionButton, modalData }) => {
   }
 
   const Device = ({device}) => {
+    function icontest() {
+      switch(device.deviceType){
+        case 'bulb':
+          return <IoBulbOutline />
+
+        case 'smartPlug':
+          return <BsPlug />
+
+        case 'onoff':
+          return <RxButton />
+
+        default:
+          return <RxButton />
+      }
+    }
     return (
       <div className={styles.deviceView}>
-        <div className="col">
+        <div className="col-3" style={iconView}>
+          {icontest()}
+        </div>
+        <div className="col-5" style={deviceNameView}>
           {device.name}
         </div>
-        <div className="col">
-          {device.serailNo}
-        </div>
-        <div className="col">
-          {device.deviceType}
+        <div className="col-4 form-check form-switch">
+          <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" style={{width:60,height:25}} />
+          <label className="form-check-label" htmlFor="flexSwitchCheckDefault"></label>
         </div>
       </div>
     );

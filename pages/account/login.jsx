@@ -3,23 +3,27 @@ import Link from 'next/link';
 import * as Yup from 'yup';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { Layout } from '../../components/account/Layout';
-
+import { userService } from '../../helpers/api/user';
 export default function Login() {
     const router = useRouter();
 
-    const loginPress = (values) => {
-      // 登入方法寫在這
-      const items = {
-        name: values.username,
-        passowrd: values.password
-      };
-      localStorage.setItem('user', JSON.stringify(items));
-      router.push('/dashboard/home');
+    const loginPress = async (values) => {
+      const res=await userService.login(values.username,values.password)
+      if(res.statusCode == 200){
+        const items = {
+          name: values.username,
+          passowrd: values.password
+        };
+        localStorage.setItem('user', JSON.stringify(items));
+        router.push('/dashboard/home');
+      }
+      else{
+        alert('登入失敗');
+      }
     }
 
   return (
     <Layout>
-      
       <div style={{height: '69vh'}}>
         <div className="card" >
           <h4 className="card-header">使用者登入</h4>
