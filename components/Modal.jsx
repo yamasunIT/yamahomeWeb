@@ -47,7 +47,7 @@ const Modal = ({ setIsOpen, actionButton, modalData }) => {
   }
 
   const Device = ({device}) => {
-    function icontest() {
+    function icon() {
       switch(device.deviceType){
         case 'bulb':
           return <IoBulbOutline />
@@ -65,7 +65,7 @@ const Modal = ({ setIsOpen, actionButton, modalData }) => {
     return (
       <div className={styles.deviceView}>
         <div className="col-3" style={iconView}>
-          {icontest()}
+          {icon()}
         </div>
         <div className="col-5" style={deviceNameView}>
           {device.name}

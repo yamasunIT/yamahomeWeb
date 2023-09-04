@@ -11,7 +11,7 @@ import { HomeHeader } from '../components/HomeHeader';
 export default function App({ Component, pageProps}) {
   const router = useRouter();
   const [user, setUser] = useState(null);
-  const [authorized, setAuthorized] = useState(true);
+
   useEffect(()=>{
     import("bootstrap/dist/js/bootstrap");
     authCheck();
@@ -19,7 +19,7 @@ export default function App({ Component, pageProps}) {
 
 function authCheck() {
   // redirect to login page if accessing a private page and not logged in 
-  const items = JSON.parse(localStorage.getItem('user'));
+  const items = JSON.parse(localStorage.getItem('user-name'));
   if (!items) {
     router.push('/account/login');
   } else {

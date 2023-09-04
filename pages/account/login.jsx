@@ -4,17 +4,14 @@ import * as Yup from 'yup';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { Layout } from '../../components/account/Layout';
 import { userService } from '../../helpers/api/user';
+
 export default function Login() {
     const router = useRouter();
 
     const loginPress = async (values) => {
-      const res=await userService.login(values.username,values.password)
+      const res = await userService.login(values.username,values.password)
       if(res.statusCode == 200){
-        const items = {
-          name: values.username,
-          passowrd: values.password
-        };
-        localStorage.setItem('user', JSON.stringify(items));
+        localStorage.setItem('user-name', res.data);
         router.push('/dashboard/home');
       }
       else{

@@ -5,10 +5,12 @@ export { HomeHeader };
 
 function HomeHeader() {
   const [show, setShow] = useState(false);
+  const [userName, setUserName] = useState();
     const router = useRouter();
 
     useEffect(() => {
       showCheck(router.asPath);
+      showName(router.asPath);
     }, [router]);
 
     function showCheck(url) {
@@ -19,10 +21,22 @@ function HomeHeader() {
         setShow(true);
       }
     }
+
+    function showName(url) {
+      const homePaths = ['/dashboard/home'];
+      if(homePaths.includes(url)) {
+        const name = localStorage.getItem('user-name');
+        if (name) {
+          setUserName(name);
+          console.log(name);
+        }
+      }
+    }
+
   if(show) {
     return (
       <div className={Styles.homeHeader}>
-        <h1>哈囉 日山先生,</h1>
+        <h1>哈囉 {userName},</h1>
         <p>祝你有個美好的一天。</p>
         <p style={{height: '50px'}}>
           室內溫度: <br/>
