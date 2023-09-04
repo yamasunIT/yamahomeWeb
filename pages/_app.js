@@ -19,7 +19,7 @@ export default function App({ Component, pageProps}) {
 
 function authCheck() {
   // redirect to login page if accessing a private page and not logged in 
-  const items = JSON.parse(localStorage.getItem('user-name'));
+  const items = localStorage.getItem('user-name');
   if (!items) {
     router.push('/account/login');
   } else {
