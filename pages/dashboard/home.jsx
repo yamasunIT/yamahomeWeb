@@ -2,6 +2,7 @@ import Styles from '../../styles/home.module.css';
 import React, { useState, useEffect } from "react";
 import Modal from '../../components/Modal';
 import { useRouter } from 'next/router';
+import { deviceService } from '../../helpers/api/device'
 
 const buttonView = {
   height: '100px'
@@ -113,9 +114,33 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    setData(homeData);
+    ArrayButton();
   }, [router]);
 
+  const ArrayButton = async () => {
+    const res = await deviceService.getAllDevices();
+    if(res.statusCode == 200){
+      const newData = [];
+      const serverData = res.data;
+      for(let i = 0; i < serverData.length; i++){
+        const filterData = newData.find((item) => item.name == serverData[i].room);
+        if(filterData){
+          filterData.devices.push(serverData[i]);
+        } else{
+          newData.push(
+            {
+              name:serverData[i].room,
+              devices:[serverData[i]]
+            }
+          )
+        }
+      }
+      console.log(newData);
+      setData(newData);
+    } else{
+      console.log('連線失敗');
+    }
+  }
 
   const onPress = (data) => {
     setIsOpen(true);
@@ -137,7 +162,7 @@ export default function Home() {
     <div className='container'>
       <div className='row row-cols-auto'>
         {data.map((item, index)=> <HomeButton data={item} key={index}/>)}
-      </div>
+      </div> 
       {isOpen && <Modal setIsOpen={setIsOpen} actionButton={actionButton} modalData={modalData}/>}
     </div>
   );
