@@ -3,108 +3,11 @@ import React, { useState, useEffect } from "react";
 import Modal from '../../components/Modal';
 import { useRouter } from 'next/router';
 import { deviceService } from '../../helpers/api/device'
+import { transferHomeData } from '../../helpers/method/common-method';
 
 const buttonView = {
   height: '100px'
 };
-
-const homeData = [
-  {
-    name:"客廳",
-    devices:[
-      {
-        name:'左燈',
-        serailNo:'1',
-        deviceType:'bulb'
-      },
-      {
-        name:'右燈',
-        serailNo:'2',
-        deviceType:'smartPlug'
-      },
-      {
-        name:'中燈',
-        serailNo:'3',
-        deviceType:'onoff'
-      },
-      {
-        name:'左燈',
-        serailNo:'1',
-        deviceType:'smartPlug'
-      },
-      {
-        name:'右燈',
-        serailNo:'2',
-        deviceType:'smartPlug'
-      },
-      {
-        name:'中燈',
-        serailNo:'3',
-        deviceType:'11'
-      }
-    ]
-  },
-  {
-    name:"廚房",
-    devices:[
-      {
-        name:'前燈',
-        serailNo:'1',
-        deviceType:'smartPlug'
-      },
-      {
-        name:'後燈',
-        serailNo:'4',
-        deviceType:'smartPlug'
-      }
-    ]
-  },
-  {
-    name:"房間",
-    devices:[
-      {
-        name:'前燈',
-        serailNo:'1',
-        deviceType:'smartPlug'
-      },
-      {
-        name:'後燈',
-        serailNo:'4',
-        deviceType:'smartPlug'
-      }
-    ]
-  },
-  {
-    name:"倉庫",
-    devices:[
-      {
-        name:'前燈',
-        serailNo:'1',
-        deviceType:'smartPlug'
-      },
-      {
-        name:'後燈',
-        serailNo:'4',
-        deviceType:'smartPlug'
-      }
-    ]
-  },
-  {
-    name:"廁所",
-    devices:[
-      {
-        name:'前燈',
-        serailNo:'1',
-        deviceType:'smartPlug'
-      },
-      {
-        name:'後燈',
-        serailNo:'4',
-        deviceType:'smartPlug'
-      }
-    ]
-  }
-];
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -114,29 +17,15 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    ArrayButton();
+    getHomeData();
   }, [router]);
 
-  const ArrayButton = async () => {
+  const getHomeData = async () => {
     const res = await deviceService.getAllDevices();
     if(res.statusCode == 200){
-      const newData = [];
-      const serverData = res.data;
-      for(let i = 0; i < serverData.length; i++){
-        const filterData = newData.find((item) => item.name == serverData[i].room);
-        if(filterData){
-          filterData.devices.push(serverData[i]);
-        } else{
-          newData.push(
-            {
-              name:serverData[i].room,
-              devices:[serverData[i]]
-            }
-          )
-        }
-      }
-      console.log(newData);
-      setData(newData);
+      const homeData = transferHomeData(res.data);
+      console.log(homeData);
+      setData(homeData);
     } else{
       console.log('連線失敗');
     }
