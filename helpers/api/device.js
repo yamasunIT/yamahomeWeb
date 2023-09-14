@@ -3,13 +3,15 @@ import { baseURL } from "../api_config";
 
 const device_url = '/api/devices/';
 const addDevice_url = '/api/devices';
+const smartPlug_url = '/api/smartPlugs/';
 
 export const deviceService = {
   getDevice,
   getAllDevices,
   addDevice,
   updateDevice,
-  deleteDevice
+  deleteDevice,
+  smartPlugCtrl
 };
 
 // 取得單一裝置
@@ -43,4 +45,8 @@ async function updateDevice(serialNo, name, room) {
 // 刪除裝置
 async function deleteDevice(serialNo) {
   return await fetchWrapper.delete(baseURL + device_url + serialNo);
+}
+
+async function smartPlugCtrl(serialNo, cmd) {
+  return await fetchWrapper.get(baseURL + smartPlug_url + serialNo + '/' + cmd);
 }

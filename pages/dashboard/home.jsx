@@ -4,7 +4,7 @@ import Modal from '../../components/Modal';
 import { useRouter } from 'next/router';
 import { deviceService } from '../../helpers/api/device'
 import { transferHomeData } from '../../helpers/method/common-method';
-
+import Link from 'next/link';
 const buttonView = {
   height: '100px'
 };
@@ -31,13 +31,12 @@ export default function Home() {
     }
   }
 
-  const onPress = (data) => {
-    setIsOpen(true);
-    setActionButton(false);
-    setModalData(data);
-  }
-
-  const HomeButton = ({data}) => {
+  const RoomButton = ({data}) => {
+    const onPress = (data) => {
+      setIsOpen(true);
+      setActionButton(false);
+      setModalData(data);
+    }
     return (
       <div className='col-12 col-sm-6 col-md-4 text-center' style={buttonView}>
         <button className={Styles.primaryBtn} onClick={() => onPress(data)}>
@@ -47,10 +46,19 @@ export default function Home() {
     );
   }
 
+  const NoDevice = () => {
+    return(
+      <div>
+        <Link href="/dashboard/editHome">新增裝置</Link>
+      </div>
+    )
+  }
+
   return (
     <div className='container'>
       <div className='row row-cols-auto'>
-        {data.map((item, index)=> <HomeButton data={item} key={index}/>)}
+        {data.map((item, index)=> <RoomButton data={item} key={index}/>)}
+        {data.length == 0 && <NoDevice/>}
       </div> 
       {isOpen && <Modal setIsOpen={setIsOpen} actionButton={actionButton} modalData={modalData}/>}
     </div>

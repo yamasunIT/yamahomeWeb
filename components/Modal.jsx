@@ -4,6 +4,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { IoBulbOutline } from "react-icons/io5";
 import { BsPlug } from "react-icons/bs";
 import { RxButton } from "react-icons/rx";
+import { deviceService } from "../helpers/api/device";
 
 const iconView = {
   fontSize: 30
@@ -49,7 +50,7 @@ const Modal = ({ setIsOpen, actionButton, modalData }) => {
   const Device = ({device}) => {
     function icon() {
       switch(device.deviceType){
-        case 'bulb':
+        case 'smartBulb':
           return <IoBulbOutline />
 
         case 'smartPlug':
@@ -62,17 +63,41 @@ const Modal = ({ setIsOpen, actionButton, modalData }) => {
           return <RxButton />
       }
     }
+
+    const OnOffBtn = ({device}) => {
+      const smartPlugCtl = async(data, cmd) => {
+        console.log(data.name, cmd);
+        // const res = await deviceService.smartPlugCtrl(data.serialNo, cmd);
+      }
+      switch(device.deviceType) {
+        case 'smartPlug':
+          return (
+            <div>
+              <button className={styles.onOffBtn} onClick={() => smartPlugCtl(device, 'on')}>
+                開
+              </button>
+              <button className={styles.onOffBtn} onClick={() => smartPlugCtl(device, 'off')}>
+              關
+            </button>
+          </div>
+          )
+        default:
+          return (
+            <p>尚未新增</p>
+          )
+      }
+      
+    }
     return (
       <div className={styles.deviceView}>
-        <div className="col-3" style={iconView}>
+        <div className="col-2" style={iconView}>
           {icon()}
         </div>
         <div className="col-5" style={deviceNameView}>
           {device.name}
         </div>
-        <div className="col-4 form-check form-switch">
-          <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" style={{width:60,height:25}} />
-          <label className="form-check-label" htmlFor="flexSwitchCheckDefault"></label>
+        <div className="col-5">
+          <OnOffBtn device={device}/>
         </div>
       </div>
     );
