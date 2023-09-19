@@ -25,11 +25,13 @@ async function getAllDevices() {
 }
 
 // 新增裝置
-async function addDevice(name, serialNo, deviceType) {
+async function addDevice(name, serialNo, deviceType, room, uiType) {
   const data = {
     name: name,
     serialNo: serialNo,
-    deviceType: deviceType
+    deviceType: deviceType,
+    room: room,
+    uiType: uiType
   }
   return await fetchWrapper.post(baseURL + addDevice_url, data);
 }

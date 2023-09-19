@@ -80,7 +80,7 @@ const Modal = ({ setIsOpen, actionButton, modalData, updateHomeData, homeData })
     const [create, setCreate] = useState(data.create);
     const [roomIdx, setRoomIdx] = useState(data.roomIndex);
     const [deviceIdx, setDeviceIdx] = useState(data.deviceIndex);
-    const [select, setSelect] = useState('');
+    const [select, setSelect] = useState('smartPlug');
 
     const ConfirmBtn = () => {
       async function confirmPress() {
@@ -115,7 +115,41 @@ const Modal = ({ setIsOpen, actionButton, modalData, updateHomeData, homeData })
       }
 
       async function createPress() {
-        console.log('create');
+        if (deviceName && deviceSNo && deviceLoc) {
+          switch(select) {
+            case 'smartPlug':
+              const res = await deviceService.addDevice(deviceName, deviceSNo, 'smartPlug', deviceLoc, 1);
+              if (res.statusCode == 200) {
+                const newHomeData = [...homeData];
+                const idx = newHomeData.findIndex((room) => room.name == deviceLoc);
+                const deviceData = {
+                  deviceType: 'smartPlug',
+                  name: deviceName,
+                  room: deviceLoc,
+                  serialNo: deviceSNo,
+                  uiType: 1
+                };
+              if(idx >= 0 ) {
+                // 已有房間
+                newHomeData[idx].devices.push(deviceData);
+              } else {
+                // 新增房間
+                newHomeData.push({name: deviceLoc, devices: [deviceData]});
+              }
+                updateHomeData(newHomeData);
+              }
+              break;
+            case 'smartSwitch':
+              break;
+            case 'smartBulb':
+              break;
+            case 'custom':
+              break;
+          }
+          setIsOpen(false);
+        } else {
+          alert("資料填寫不完整");
+        }
       }
   
       return (
