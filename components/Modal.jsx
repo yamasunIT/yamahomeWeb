@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import { IoBulbOutline } from "react-icons/io5";
@@ -14,38 +14,7 @@ const deviceNameView = {
   fontSize: 16
 }
 
-const Modal = ({ setIsOpen, actionButton, modalData }) => {
-  const ConfirmBtn = () => {
-    function confirmPress() {
-      setIsOpen(false);
-    }
-
-    return (
-      <button className={styles.confirmBtn} onClick={() => confirmPress()}>
-        確定
-      </button>
-    );
-  }
-
-  const DeleteBtn = () => {
-    function deletePress() {
-      setIsOpen(false);
-    }
-
-    return (
-      <button className={styles.deleteBtn} onClick={() => deletePress()}>
-        刪除
-      </button>
-    );
-  }
-
-  const CancelBtn = () => {
-    return (
-      <button className={styles.cancelBtn} onClick={() => setIsOpen(false)}>
-        取消
-      </button>
-    );
-  }
+const Modal = ({ setIsOpen, actionButton, modalData, updateHomeData, homeData }) => {
 
   const Device = ({device}) => {
     function icon() {
@@ -103,6 +72,122 @@ const Modal = ({ setIsOpen, actionButton, modalData }) => {
     );
   }
 
+  const EditView = ({data}) => {
+    const labelStyle = {color: 'black',marginTop: 10};
+    const [deviceName, setDeviceName] = useState(data.name);
+    const [deviceSNo, setDeviceSNo] = useState(data.serialNo);
+    const [deviceLoc, setDeviceLoc] = useState(data.room);
+    const [create, setCreate] = useState(data.create);
+    const [roomIdx, setRoomIdx] = useState(data.roomIndex);
+    const [deviceIdx, setDeviceIdx] = useState(data.deviceIndex);
+    const [select, setSelect] = useState('');
+
+    const ConfirmBtn = () => {
+      async function confirmPress() {
+        if(deviceName && deviceLoc && deviceSNo) {
+          const result = await deviceService.updateDevice(deviceSNo, deviceName, deviceLoc);
+          if(result.statusCode == 200) {
+            if (homeData[roomIdx].name == deviceLoc) {
+              // 沒有換房間
+              const newHomeData = [...homeData];
+              newHomeData[roomIdx].devices[deviceIdx].name = deviceName;
+              updateHomeData(newHomeData);
+            } else {
+              // 換房間
+              const newHomeData = [...homeData];
+              newHomeData[roomIdx].devices.splice(deviceIdx, 1);
+              const idx = newHomeData.findIndex((room) => room.name == deviceLoc);
+              const deviceData = {...data};
+              deviceData.name = deviceName;
+              deviceData.room = deviceLoc;
+              if(idx >= 0 ) {
+                // 已有房間
+                homeData[idx].devices.push(deviceData);
+              } else {
+                // 新增房間
+                homeData.push({name: deviceLoc, devices: [deviceData]});
+              }
+              updateHomeData(homeData);
+            }
+            setIsOpen(false);
+          }
+        }
+      }
+
+      async function createPress() {
+        console.log('create');
+      }
+  
+      return (
+        <button className={styles.confirmBtn} onClick={create ? () => createPress() : () => confirmPress()}>
+          確定
+        </button>
+      );
+    }
+
+    const DeleteBtn = () => {
+      async function deletePress() {
+        if(deviceSNo) {
+          const result = await deviceService.deleteDevice(deviceSNo);
+          if(result.statusCode == 200) {
+            homeData[roomIdx].devices.splice(deviceIdx, 1);
+            updateHomeData(homeData);
+            setIsOpen(false);
+          }
+        }
+      }
+  
+      return (
+        <button className={styles.deleteBtn} onClick={() => deletePress()}>
+          刪除
+        </button>
+      );
+    }
+
+    return (
+      <>
+        {create && <label style={labelStyle}>
+          種類: 
+          <select onChange={(e) => setSelect(e.target.value)} style={{width: 100}}>
+            <option value="smartPlug">智能插座</option>
+            <option value="smartSwitch">智能開關</option>
+            <option value="smartBulb">智能燈泡</option>
+            <option value="custom">其他</option>
+          </select>
+        </label>}
+        <label style={labelStyle}>
+          裝置名稱:
+          <input
+            name="deviceName"
+            value={deviceName}
+            style={{width: 200}}
+            onChange={(event) => setDeviceName(event.target.value)}/>
+        </label>
+        <label style={labelStyle}>
+          裝置序號:
+          <input
+            name="deviceSNo"
+            value={deviceSNo}
+            style={{width: 200}}
+            disabled={!create}
+            onChange={(event) => setDeviceSNo(event.target.value)}/>
+        </label>
+        <label style={labelStyle}>
+          裝置位置:
+          <input
+            name="deviceLoc"
+            value={deviceLoc}
+            style={{width: 200}}
+            onChange={(event) => setDeviceLoc(event.target.value)}/>
+        </label>
+        <div className={styles.actionsContainer}>
+          {!create && <DeleteBtn/>}
+          <ConfirmBtn/>
+        </div>
+      </>
+    )
+  }
+
   return (
     <>
       <div className={styles.darkBG} onClick={() => setIsOpen(false)}/>
@@ -114,15 +199,10 @@ const Modal = ({ setIsOpen, actionButton, modalData }) => {
           <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
-          {!actionButton && <div className={styles.modalContent}>
-            {modalData.devices.map((item, index)=> <Device device={item} key={index}/>)}
-          </div>}
-          {actionButton && <div className={styles.modalActions}>
-            <div className={styles.actionsContainer}>
-              <DeleteBtn/>
-              <ConfirmBtn/>
-            </div>
-          </div>}
+          <div className={styles.modalContent}>
+            {!actionButton && modalData.devices.map((item, index)=> <Device device={item} key={index}/>)}
+            {actionButton && <EditView data={modalData}/>}
+          </div>
         </div>
       </div>
     </>

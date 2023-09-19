@@ -38,13 +38,15 @@ async function addDevice(name, serialNo, deviceType) {
 // 更新資訊
 async function updateDevice(serialNo, name, room) {
   if(name) {
-    return  await fetchWrapper.put(baseURL + device_url + serialNo + '?name=' + name + '&room=' + room);
+    const res = await fetchWrapper.put(baseURL + device_url + serialNo + '?name=' + name + '&room=' + room);
+    return res;
   }
 }
 
 // 刪除裝置
 async function deleteDevice(serialNo) {
-  return await fetchWrapper.delete(baseURL + device_url + serialNo);
+  const res = await fetchWrapper.delete(baseURL + device_url + serialNo);
+  return res;
 }
 
 async function smartPlugCtrl(serialNo, cmd) {

@@ -46,7 +46,11 @@ export default function EditHome() {
       setActionButton(true);
       const data = {
         name: '',
-        devices: []
+        serialNo: '',
+        room: '',
+        create: true,
+        roomIdx: -1,
+        deviceIdx: -1
       }
       setModalData(data);
     }
@@ -64,15 +68,15 @@ export default function EditHome() {
     );
   }
 
-  const RoomDevices = ({data}) => {
-    const editBtn = (data) => {
+  const RoomDevices = ({data, roomIndex}) => {
+    const editBtn = (data, roomIndex, deviceIndex) => {
       setIsOpen(true);
       setActionButton(true);
-      console.log(data);
+      data = {...data, roomIndex: roomIndex, deviceIndex: deviceIndex};
       setModalData(data);
     }
     /*devices */
-    const Device = ({device}) => {
+    const Device = ({device, roomIndex, deviceIndex}) => {
       return (
         <div className="row" style={{alignItems: 'center'}}>
           <div className="col-8" style={deviceItem}>
@@ -82,7 +86,7 @@ export default function EditHome() {
             <button
               className="btn btn-warning"
               style={itemBtn}
-              onClick={() => editBtn(device)}>
+              onClick={() => editBtn(device, roomIndex, deviceIndex)}>
                 {FaUserEdit()}
             </button>
           </div>
@@ -98,7 +102,7 @@ export default function EditHome() {
             </h2>
           </div>
           <div className="col">
-            {data.devices.map((device, index)=> <Device device={device} key={index}/>)}
+            {data.devices.map((device, index)=> <Device device={device} key={index} roomIndex={roomIndex} deviceIndex={index}/>)}
           </div> 
       </div>
     );
@@ -107,8 +111,14 @@ export default function EditHome() {
       return (
         <div className='container'>
           <NewButton/>
-          {data.map((item, index)=> <RoomDevices data={item} key={index}/>)}
-          {isOpen && <Modal setIsOpen={setIsOpen} actionButton={actionButton} modalData={modalData}/>}
+          {data.map((item, index)=> <RoomDevices data={item} key={index} roomIndex={index}/>)}
+          {isOpen &&
+            <Modal
+              setIsOpen={setIsOpen}
+              actionButton={actionButton}
+              modalData={modalData}
+              updateHomeData={setData}
+              homeData={data}/>}
         </div>
       );
 }
