@@ -22,7 +22,7 @@ const Modal = ({ setIsOpen, actionButton, modalData }) => {
 
     return (
       <button className={styles.confirmBtn} onClick={() => confirmPress()}>
-        Confirm
+        確定
       </button>
     );
   }
@@ -34,7 +34,7 @@ const Modal = ({ setIsOpen, actionButton, modalData }) => {
 
     return (
       <button className={styles.deleteBtn} onClick={() => deletePress()}>
-        Delete
+        刪除
       </button>
     );
   }
@@ -42,7 +42,7 @@ const Modal = ({ setIsOpen, actionButton, modalData }) => {
   const CancelBtn = () => {
     return (
       <button className={styles.cancelBtn} onClick={() => setIsOpen(false)}>
-        Cancel
+        取消
       </button>
     );
   }
@@ -109,18 +109,18 @@ const Modal = ({ setIsOpen, actionButton, modalData }) => {
       <div className={styles.centered}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
-            <h5 className={styles.heading}>{modalData.name}</h5>
+            <h5 className={styles.heading}>{actionButton ? '編輯裝置' : modalData.name}</h5>
           </div>
           <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
-          <div className={styles.modalContent}>
+          {!actionButton && <div className={styles.modalContent}>
             {modalData.devices.map((item, index)=> <Device device={item} key={index}/>)}
-          </div>
+          </div>}
           {actionButton && <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>
-              <DeleteBtn data={modalData.devices}/>
-              <CancelBtn/>
+              <DeleteBtn/>
+              <ConfirmBtn/>
             </div>
           </div>}
         </div>

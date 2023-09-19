@@ -1,0 +1,31 @@
+.primaryBtn {
+  margin: 10px 5px;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 13px 25px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  border: none;
+  color: white;
+  background: #ffcc33;
+  transition: all 0.25s ease;
+  width: 50%;
+  height: 80%;
+}
+
+.buttonView {
+  margin: 10px 10px;
+}
+
+.deviceBtn {
+  margin: 0px;
+  cursor: pointer;
+  padding: 15px 10px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  border: none;
+  color: white;
+  background: #ffcc33;
+  width: 80%;
+  height: 50%;
+}

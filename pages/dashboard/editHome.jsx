@@ -3,6 +3,20 @@ import React, { useState, useEffect } from "react";
 import { deviceService } from '../../helpers/api/device'
 import { useRouter } from 'next/router';
 import { FaUserEdit } from "react-icons/fa";
+import Styles from '../../styles/editHome.module.css';
+import Modal from '../../components/Modal';
+
+const deviceItem = {
+  marginTop:5,
+  marginBottom:3
+};
+
+const itemBtn = {
+  float: 'right',
+  marginRight:10,
+  width:"100px",
+  color: 'white'
+};
 
 export default function EditHome() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,64 +40,75 @@ export default function EditHome() {
     }
   }
 
-
-  const onPress = (data) => {
-    setIsOpen(true);
-    setActionButton(false);
-    console.log(data);
-    setModalData(data);
-  }
-
-  const DevicesButton =({data}) =>{
-    return(
-      <button type="button" className="btn btn-warning" style={{fontSize: 17,float: 'right',marginRight:10,width:"100px"}} onClick={() => onPress(data)}>{FaUserEdit()}</button>
-      );
-  }
-  
   const NewButton =() =>{
+    const createDevice = () => {
+      setIsOpen(true);
+      setActionButton(true);
+      const data = {
+        name: '',
+        devices: []
+      }
+      setModalData(data);
+    }
+
     return(
       <div className="row">
         <div style={{textAlign:"center"}}>
-          <button type="button" className="btn btn-warning " style={{width:250,margin:8,alignItems:'center' }} onClick={() => onPress()}>新增</button>
+          <button
+            className={Styles.primaryBtn}
+            onClick={() => createDevice()}>
+              新增
+          </button>
         </div>
       </div>
     );
   }
 
   const RoomDevices = ({data}) => {
-
+    const editBtn = (data) => {
+      setIsOpen(true);
+      setActionButton(true);
+      console.log(data);
+      setModalData(data);
+    }
     /*devices */
-    const Device = ({data}) => {
+    const Device = ({device}) => {
       return (
-        <div className="row">
-          <div className="col-8" style={{marginTop:5,marginBottom:3}}>
-              {data.name}
+        <div className="row" style={{alignItems: 'center'}}>
+          <div className="col-8" style={deviceItem}>
+              {device.name}
           </div> 
-          <div className="col-4" style={{marginTop:5,marginBottom:3}}>    
-              <DevicesButton data={data}/>
+          <div className="col-4" style={deviceItem}>    
+            <button
+              className="btn btn-warning"
+              style={itemBtn}
+              onClick={() => editBtn(device)}>
+                {FaUserEdit()}
+            </button>
           </div>
         </div>
       );
     }
     
-      return(
-        <div style={{marginLeft:30}}>
-            <div className="col">
-              <h2>
-              {data.name}
-              </h2>
-            </div>
-            <div className="col">
-              {data.devices.map((device, index)=> <Device data={device} key={index}/>)}
-            </div> 
-        </div>
-      );
-  }   
-  
+    return(
+      <div style={{marginLeft: 30}}>
+          <div className="col">
+            <h2>
+            {data.name}
+            </h2>
+          </div>
+          <div className="col">
+            {data.devices.map((device, index)=> <Device device={device} key={index}/>)}
+          </div> 
+      </div>
+    );
+  }
+
       return (
         <div className='container'>
           <NewButton/>
           {data.map((item, index)=> <RoomDevices data={item} key={index}/>)}
+          {isOpen && <Modal setIsOpen={setIsOpen} actionButton={actionButton} modalData={modalData}/>}
         </div>
       );
 }
