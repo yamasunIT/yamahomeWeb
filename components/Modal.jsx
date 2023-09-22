@@ -57,6 +57,7 @@ const Modal = ({ setIsOpen, actionButton, modalData, updateHomeData, homeData })
       }
       
     }
+
     return (
       <div className={styles.deviceView}>
         <div className="col-2" style={iconView}>
@@ -141,7 +142,7 @@ const Modal = ({ setIsOpen, actionButton, modalData, updateHomeData, homeData })
               break;
             case 'smartSwitch':
               break;
-            case 'smartBulb':
+            case 'colorBulb':
               break;
             case 'custom':
               break;
@@ -185,7 +186,7 @@ const Modal = ({ setIsOpen, actionButton, modalData, updateHomeData, homeData })
           <select onChange={(e) => setSelect(e.target.value)} style={{width: 100}}>
             <option value="smartPlug">智能插座</option>
             <option value="smartSwitch">智能開關</option>
-            <option value="smartBulb">智能燈泡</option>
+            <option value="colorBulb">智能燈泡</option>
             <option value="custom">其他</option>
           </select>
         </label>}
