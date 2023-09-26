@@ -37,7 +37,13 @@ const Modal = ({ setIsOpen, actionButton, modalData, updateHomeData, homeData })
     const OnOffBtn = ({device}) => {
       const smartPlugCtl = async(data, cmd) => {
         console.log(data.name, cmd);
-        // const res = await deviceService.smartPlugCtrl(data.serialNo, cmd);
+        try {
+          const res = await deviceService.smartPlugCtrl(data.serialNo, cmd);
+          console.log(res);
+        } catch(err) {
+          console.log('error: ', err);
+        }
+        
       }
       switch(device.deviceType) {
         case 'smartPlug':
