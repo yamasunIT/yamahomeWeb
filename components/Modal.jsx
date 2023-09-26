@@ -5,6 +5,7 @@ import { IoBulbOutline } from "react-icons/io5";
 import { BsPlug } from "react-icons/bs";
 import { RxButton } from "react-icons/rx";
 import { deviceService } from "../helpers/api/device";
+import { element } from "prop-types";
 
 const iconView = {
   fontSize: 30
@@ -108,7 +109,8 @@ const Modal = ({ setIsOpen, actionButton, modalData, updateHomeData, homeData })
                 // 新增房間
                 homeData.push({name: deviceLoc, devices: [deviceData]});
               }
-              updateHomeData(homeData);
+              const filteredHomeData = homeData.filter((element)=> element.devices.length > 0);
+              updateHomeData(filteredHomeData);
             }
             setIsOpen(false);
           }
@@ -166,7 +168,8 @@ const Modal = ({ setIsOpen, actionButton, modalData, updateHomeData, homeData })
           const result = await deviceService.deleteDevice(deviceSNo);
           if(result.statusCode == 200) {
             homeData[roomIdx].devices.splice(deviceIdx, 1);
-            updateHomeData(homeData);
+            const filteredHomeData = homeData.filter((element)=> element.devices.length > 0);
+            updateHomeData(filteredHomeData);
             setIsOpen(false);
           }
         }
